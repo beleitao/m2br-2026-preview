@@ -2,6 +2,25 @@
    M2BR 2026 - Main JavaScript
    ============================================ */
 
+// --- Theme Toggle ---
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('m2br-theme');
+
+if (savedTheme === 'light') {
+  document.documentElement.setAttribute('data-theme', 'light');
+}
+
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  if (next === 'dark') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', next);
+  }
+  localStorage.setItem('m2br-theme', next);
+});
+
 // --- Navbar scroll effect ---
 const nav = document.getElementById('nav');
 let lastScroll = 0;
