@@ -731,65 +731,84 @@ h1, h2, h3, h4 {
   cursor: pointer;
 }
 
+/* Photo: B&W by default, color on hover */
 .team-photo {
   width: 100%;
   aspect-ratio: 3 / 4;
   background-size: cover;
   background-position: center top;
   background-color: var(--black-card);
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+.team-card:hover .team-photo {
+  filter: grayscale(0%);
+}
+
+/* Name label: always visible over photo */
+.team-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 24px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  z-index: 2;
   transition: opacity 0.4s ease;
 }
 
-.team-info {
+.team-card:hover .team-label {
+  opacity: 0;
+}
+
+/* Bio overlay: hidden, shown on hover */
+.team-bio {
   position: absolute;
   inset: 0;
-  background: var(--black-card);
+  background: rgba(0,0,0,0.92);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 28px;
   opacity: 0;
+  z-index: 3;
   transition: opacity 0.4s ease;
 }
 
-/* Desktop: hover swaps photo for info */
-@media (hover: hover) {
-  .team-card:hover .team-photo {
-    opacity: 0;
-  }
-  .team-card:hover .team-info {
-    opacity: 1;
-  }
+.team-card:hover .team-bio {
+  opacity: 1;
 }
 
-/* Touch/mobile: always show name overlay on photo */
-@media (hover: none) {
-  .team-info {
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
-    opacity: 1;
-  }
+.team-bio-text {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-top: 12px;
 }
 
+/* Shared styles for name / role */
 .team-name {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   color: var(--white);
 }
 
 .team-role {
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--red);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-/* Team quote card (same pattern as cases) */
+/* Team quote card */
 .team-quote {
   background: var(--red);
   padding: 32px 28px;
@@ -805,6 +824,19 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   line-height: 1.15;
   color: var(--white);
+}
+
+/* Touch devices: no hover, show label always */
+@media (hover: none) {
+  .team-card:hover .team-label {
+    opacity: 1;
+  }
+  .team-card:hover .team-bio {
+    opacity: 0;
+  }
+  .team-card:hover .team-photo {
+    filter: grayscale(100%);
+  }
 }
 
 /* --- CTA Section --- */
