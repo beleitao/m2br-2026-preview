@@ -89,6 +89,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -98,6 +99,11 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--white);
 }
 
 a {
@@ -156,6 +162,8 @@ h1, h2, h3, h4 {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 40px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* --- Navigation --- */
@@ -184,6 +192,7 @@ h1, h2, h3, h4 {
 .nav-logo-img {
   height: 38px;
   width: auto;
+  transition: filter 0.4s ease;
 }
 
 .nav-links {
@@ -359,7 +368,7 @@ h1, h2, h3, h4 {
   width: 100%;
   height: 100%;
   z-index: 2;
-  pointer-events: all;
+  pointer-events: none;
 }
 
 .hero .container {
@@ -377,18 +386,21 @@ h1, h2, h3, h4 {
 .hero-logo {
   width: 180px;
   height: auto;
+  transition: filter 0.4s ease;
 }
 
 .section-logo {
   width: 80px;
   height: auto;
   margin-bottom: 12px;
+  transition: filter 0.4s ease;
 }
 
 .footer-logo {
   height: 44px;
   width: auto;
   margin-bottom: 16px;
+  transition: filter 0.4s ease;
 }
 
 .hero-content {
@@ -401,6 +413,9 @@ h1, h2, h3, h4 {
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeIn 0.7s ease forwards 0.2s;
 }
 
 .hero-content h1 {
@@ -408,6 +423,9 @@ h1, h2, h3, h4 {
   letter-spacing: -0.02em;
   margin-bottom: 24px;
   font-weight: 800;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeIn 0.7s ease forwards 0.5s;
 }
 
 .hero-content .hero-desc {
@@ -415,6 +433,19 @@ h1, h2, h3, h4 {
   font-size: 1.1rem;
   line-height: 1.7;
   max-width: 560px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeIn 0.7s ease forwards 0.8s;
+}
+
+.hero-brand {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeIn 0.7s ease forwards 0.1s;
+}
+
+@keyframes heroFadeIn {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-scroll {
@@ -1155,7 +1186,11 @@ h1, h2, h3, h4 {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .fade-up {
+  .fade-up,
+  .hero-brand,
+  .hero-content .hero-tagline,
+  .hero-content h1,
+  .hero-content .hero-desc {
     opacity: 1;
     transform: none;
   }
@@ -1230,7 +1265,7 @@ h1, h2, h3, h4 {
   }
 
   .container {
-    padding: 0 24px;
+    padding: 0 20px;
   }
 
   .nav-links {
@@ -1276,6 +1311,15 @@ h1, h2, h3, h4 {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .client-logo {
+    padding: 24px 16px;
+  }
+
+  .client-logo img {
+    max-height: 50px;
+    max-width: 100px;
+  }
+
   .numbers-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1310,9 +1354,13 @@ h1, h2, h3, h4 {
   .badges-row {
     gap: 32px;
   }
+
+  .section-sidebar {
+    max-width: 100%;
+  }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   .container {
     padding: 0 16px;
   }
@@ -1337,11 +1385,36 @@ h1, h2, h3, h4 {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .client-logo {
+    padding: 20px 12px;
+  }
+
+  .client-logo img {
+    max-height: 40px;
+    max-width: 80px;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .team-card {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
   .cta-content h2 {
     font-size: 1.6rem;
   }
 
   .badge-item img {
     height: 36px;
+  }
+
+  .badges-row {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

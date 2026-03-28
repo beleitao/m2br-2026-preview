@@ -21,19 +21,25 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('m2br-theme', next);
 });
 
+// --- Scroll throttle utility ---
+let ticking = false;
+function onScroll(callback) {
+  if (!ticking) {
+    requestAnimationFrame(() => { callback(); ticking = false; });
+    ticking = true;
+  }
+}
+
 // --- Navbar scroll effect ---
 const nav = document.getElementById('nav');
-let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
-  const currentScroll = window.scrollY;
-  if (currentScroll > 60) {
+window.addEventListener('scroll', () => onScroll(() => {
+  if (window.scrollY > 60) {
     nav.classList.add('scrolled');
   } else {
     nav.classList.remove('scrolled');
   }
-  lastScroll = currentScroll;
-});
+}));
 
 // --- Mobile nav toggle ---
 const navToggle = document.getElementById('navToggle');
@@ -76,7 +82,7 @@ function updateActiveLink() {
   });
 }
 
-window.addEventListener('scroll', updateActiveLink);
+window.addEventListener('scroll', () => onScroll(updateActiveLink));
 
 // --- Scroll reveal (fade-up animation) ---
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -199,9 +205,11 @@ numberElements.forEach(el => numberObserver.observe(el));
   }
 
   function createParticles() {
-    const count = Math.floor(PARTICLE_COUNT_BASE * (width / 1400));
+    const isMobile = width < 768;
+    const base = isMobile ? 30 : PARTICLE_COUNT_BASE;
+    const count = Math.floor(base * (width / 1400));
     particles = [];
-    for (let i = 0; i < Math.max(count, 35); i++) {
+    for (let i = 0; i < Math.max(count, isMobile ? 20 : 35); i++) {
       const isAccent = Math.random() < 0.15;
       particles.push({
         x: Math.random() * width,
@@ -305,14 +313,15 @@ numberElements.forEach(el => numberObserver.observe(el));
     }
   }
 
-  // Mouse tracking relative to canvas
-  canvas.addEventListener('mousemove', (e) => {
+  // Mouse tracking relative to hero section (canvas has pointer-events: none)
+  const heroEl = canvas.parentElement;
+  heroEl.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
     mouse.y = e.clientY - rect.top;
   });
 
-  canvas.addEventListener('mouseleave', () => {
+  heroEl.addEventListener('mouseleave', () => {
     mouse.x = -9999;
     mouse.y = -9999;
   });
