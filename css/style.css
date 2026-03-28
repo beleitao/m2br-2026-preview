@@ -17,7 +17,7 @@
   --black-card: #1a1a1a;
   --white: #ffffff;
   --gray-light: #f4f4f4;
-  --gray: #999999;
+  --gray: #b3b3b3;
   --gray-dark: #333333;
   --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   --font-body: 'Inter', 'Helvetica Neue', sans-serif;
@@ -364,7 +364,7 @@ h1, h2, h3, h4 {
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 24px;
 }
 
 /* Content Card */
@@ -395,7 +395,7 @@ h1, h2, h3, h4 {
 }
 
 .card-services {
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: var(--gray);
   margin-bottom: 16px;
   line-height: 1.5;
@@ -421,8 +421,8 @@ h1, h2, h3, h4 {
 }
 
 .card-arrow {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border: 1.5px solid var(--red);
   border-radius: 50%;
   display: flex;
@@ -572,13 +572,13 @@ h1, h2, h3, h4 {
   color: var(--gray);
   font-size: 0.88rem;
   max-width: 400px;
-  text-align: right;
+  text-align: left;
   line-height: 1.6;
 }
 
 .service-toggle {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border: 1.5px solid rgba(255,255,255,0.2);
   border-radius: 50%;
   display: flex;
@@ -692,10 +692,9 @@ h1, h2, h3, h4 {
 }
 
 .cta-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .cta-content .cta-tag {
@@ -790,8 +789,8 @@ h1, h2, h3, h4 {
 }
 
 .social-link {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 50%;
   display: flex;
@@ -826,6 +825,46 @@ h1, h2, h3, h4 {
   color: var(--red);
 }
 
+/* --- Skip Link --- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  background: var(--red);
+  color: var(--white);
+  padding: 12px 24px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* --- Focus Visible --- */
+*:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.nav-links a:focus-visible,
+.btn-primary:focus-visible,
+.card-arrow:focus-visible,
+.social-link:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* --- Nav Toggle as button reset --- */
+.nav-toggle {
+  background: none;
+  border: none;
+}
+
 /* --- Animations --- */
 .fade-up {
   opacity: 0;
@@ -836,6 +875,31 @@ h1, h2, h3, h4 {
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Stagger animation for grid children */
+.cases-grid .fade-up:nth-child(2) { transition-delay: 0.1s; }
+.cases-grid .fade-up:nth-child(3) { transition-delay: 0.2s; }
+.cases-grid .fade-up:nth-child(4) { transition-delay: 0.3s; }
+.numbers-grid .number-item:nth-child(2) { transition-delay: 0.1s; }
+.numbers-grid .number-item:nth-child(3) { transition-delay: 0.2s; }
+.numbers-grid .number-item:nth-child(4) { transition-delay: 0.3s; }
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* --- Responsive --- */
@@ -967,5 +1031,39 @@ h1, h2, h3, h4 {
 
   .badges-row {
     gap: 32px;
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .banner-text {
+    font-size: 1.5rem;
+  }
+
+  .number-value {
+    font-size: 2.5rem;
+  }
+
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .badge-item img {
+    height: 36px;
   }
 }
