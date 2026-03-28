@@ -21,6 +21,9 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('m2br-theme', next);
 });
 
+// --- Motion preference ---
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // --- Scroll throttle utility ---
 let ticking = false;
 function onScroll(callback) {
@@ -33,12 +36,37 @@ function onScroll(callback) {
 // --- Navbar scroll effect ---
 const nav = document.getElementById('nav');
 
+// --- Logo fade on nav proximity ---
+const fadeLogos = document.querySelectorAll('.section-logo, .hero-logo');
+const FADE_START = 160;
+const FADE_END = 60;
+const FADE_RANGE = FADE_START - FADE_END;
+
+function updateLogoFade() {
+  if (prefersReducedMotion) return;
+  fadeLogos.forEach(logo => {
+    const top = logo.getBoundingClientRect().top;
+    if (top > FADE_START) {
+      logo.style.opacity = '';
+      logo.style.transform = '';
+    } else if (top < FADE_END) {
+      logo.style.opacity = '0';
+      logo.style.transform = 'scale(0.92)';
+    } else {
+      const p = (top - FADE_END) / FADE_RANGE;
+      logo.style.opacity = p;
+      logo.style.transform = `scale(${0.92 + p * 0.08})`;
+    }
+  });
+}
+
 window.addEventListener('scroll', () => onScroll(() => {
   if (window.scrollY > 60) {
     nav.classList.add('scrolled');
   } else {
     nav.classList.remove('scrolled');
   }
+  updateLogoFade();
 }));
 
 // --- Mobile nav toggle ---
@@ -85,8 +113,6 @@ function updateActiveLink() {
 window.addEventListener('scroll', () => onScroll(updateActiveLink));
 
 // --- Scroll reveal (fade-up animation) ---
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 const fadeElements = document.querySelectorAll('.fade-up');
 
 if (prefersReducedMotion) {
