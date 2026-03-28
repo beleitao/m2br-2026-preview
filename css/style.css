@@ -718,6 +718,95 @@ h1, h2, h3, h4 {
   width: auto;
 }
 
+/* --- Team Section --- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.team-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.team-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-size: cover;
+  background-position: center top;
+  background-color: var(--black-card);
+  transition: opacity 0.4s ease;
+}
+
+.team-info {
+  position: absolute;
+  inset: 0;
+  background: var(--black-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Desktop: hover swaps photo for info */
+@media (hover: hover) {
+  .team-card:hover .team-photo {
+    opacity: 0;
+  }
+  .team-card:hover .team-info {
+    opacity: 1;
+  }
+}
+
+/* Touch/mobile: always show name overlay on photo */
+@media (hover: none) {
+  .team-info {
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+    opacity: 1;
+  }
+}
+
+.team-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  color: var(--white);
+}
+
+.team-role {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Team quote card (same pattern as cases) */
+.team-quote {
+  background: var(--red);
+  padding: 32px 28px;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 3 / 4;
+}
+
+.team-quote .quote-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--white);
+}
+
 /* --- CTA Section --- */
 .cta-section {
   padding: 120px 0;
@@ -943,6 +1032,9 @@ h1, h2, h3, h4 {
   .clients-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 992px) {
@@ -960,6 +1052,10 @@ h1, h2, h3, h4 {
   }
 
   .cases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1025,6 +1121,15 @@ h1, h2, h3, h4 {
 
   .cases-grid {
     grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-quote {
+    aspect-ratio: auto;
+    min-height: 180px;
   }
 
   .clients-grid {
