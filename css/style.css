@@ -66,7 +66,6 @@
 }
 
 /* Light mode specific overrides */
-[data-theme="light"] .hero-symbol { color: var(--black); opacity: 0.04; }
 [data-theme="light"] .nav-logo-img { filter: brightness(0); }
 [data-theme="light"] .section-logo { filter: brightness(0); }
 [data-theme="light"] .footer-logo { filter: brightness(0); }
@@ -354,20 +353,13 @@ h1, h2, h3, h4 {
   background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%);
 }
 
-.hero-symbol {
+.hero-particles {
   position: absolute;
-  right: -5%;
-  top: 50%;
-  transform: translateY(-50%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 2;
-  opacity: 0.06;
-  font-family: var(--font-display);
-  font-size: 60vw;
-  font-weight: 900;
-  color: var(--white);
-  line-height: 0.8;
-  pointer-events: none;
-  user-select: none;
+  pointer-events: all;
 }
 
 .hero .container {
