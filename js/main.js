@@ -36,28 +36,41 @@ function onScroll(callback) {
 // --- Navbar scroll effect ---
 const nav = document.getElementById('nav');
 
-// --- Logo fade on nav proximity ---
-const fadeLogos = document.querySelectorAll('.section-logo, .hero-logo');
-const FADE_START = 160;
-const FADE_END = 60;
-const FADE_RANGE = FADE_START - FADE_END;
+// --- Ghost letter parallax ---
+const ghosts = document.querySelectorAll('.section-ghost');
 
-function updateLogoFade() {
+function updateParallax() {
   if (prefersReducedMotion) return;
-  fadeLogos.forEach(logo => {
-    const top = logo.getBoundingClientRect().top;
-    if (top > FADE_START) {
-      logo.style.opacity = '';
-      logo.style.transform = '';
-    } else if (top < FADE_END) {
-      logo.style.opacity = '0';
-      logo.style.transform = 'scale(0.92)';
-    } else {
-      const p = (top - FADE_END) / FADE_RANGE;
-      logo.style.opacity = p;
-      logo.style.transform = `scale(${0.92 + p * 0.08})`;
-    }
+  const scrollY = window.scrollY;
+  const vh = window.innerHeight;
+  ghosts.forEach(ghost => {
+    const section = ghost.parentElement;
+    const rect = section.getBoundingClientRect();
+    // Only update when section is near viewport
+    if (rect.bottom < -200 || rect.top > vh + 200) return;
+    // Parallax: ghost moves at 0.3x speed relative to section
+    const sectionCenter = rect.top + rect.height / 2;
+    const offset = (sectionCenter - vh / 2) * 0.15;
+    ghost.style.setProperty('--parallax-y', offset + 'px');
   });
+}
+
+// --- Hero logo fade on nav proximity ---
+const heroLogo = document.querySelector('.hero-logo');
+function updateHeroLogoFade() {
+  if (!heroLogo || prefersReducedMotion) return;
+  const top = heroLogo.getBoundingClientRect().top;
+  if (top > 160) {
+    heroLogo.style.opacity = '';
+    heroLogo.style.transform = '';
+  } else if (top < 60) {
+    heroLogo.style.opacity = '0';
+    heroLogo.style.transform = 'scale(0.92)';
+  } else {
+    const p = (top - 60) / 100;
+    heroLogo.style.opacity = p;
+    heroLogo.style.transform = `scale(${0.92 + p * 0.08})`;
+  }
 }
 
 window.addEventListener('scroll', () => onScroll(() => {
@@ -66,7 +79,8 @@ window.addEventListener('scroll', () => onScroll(() => {
   } else {
     nav.classList.remove('scrolled');
   }
-  updateLogoFade();
+  updateParallax();
+  updateHeroLogoFade();
 }));
 
 // --- Mobile nav toggle ---
