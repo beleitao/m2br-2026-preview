@@ -476,32 +476,36 @@ h1, h2, h3, h4 {
   50% { opacity: 1; transform: translateX(-50%) translateY(6px); }
 }
 
-/* --- Section Ghost Letter (Parallax Brand Element) --- */
-.section-ghost {
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(calc(-50% + var(--parallax-y, 0px)));
+/* --- Section Accent Letter --- */
+.section-accent {
+  display: block;
   font-family: var(--font-display);
-  font-size: clamp(20rem, 35vw, 45rem);
+  font-size: 6rem;
   font-weight: 900;
-  line-height: 0.8;
-  color: var(--text-primary);
-  opacity: 0.03;
-  pointer-events: none;
+  line-height: 0.85;
+  color: var(--red);
+  opacity: 0.22;
+  margin-bottom: 18px;
+  letter-spacing: -0.04em;
+  position: relative;
   user-select: none;
-  z-index: 0;
-  will-change: transform;
   transition: opacity 0.4s ease;
 }
 
-[data-theme="light"] .section-ghost {
-  opacity: 0.04;
+.section-accent::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--red);
+  margin-top: 14px;
+  opacity: 0.7;
+  border-radius: 2px;
 }
 
-.section-light .section-ghost {
-  color: var(--black);
-  opacity: 0.04;
+.section-light .section-accent {
+  color: var(--red);
+  opacity: 0.18;
 }
 
 /* --- Section Layout: Sidebar + Grid (Brandtech pattern) --- */
@@ -1295,10 +1299,9 @@ h1, h2, h3, h4 {
     --section-padding: 60px 0;
   }
 
-  .section-ghost {
-    font-size: clamp(12rem, 50vw, 20rem);
-    right: -5%;
-    opacity: 0.035;
+  .section-accent {
+    font-size: 4rem;
+    margin-bottom: 12px;
   }
 
   .container {

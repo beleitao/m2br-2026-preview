@@ -36,25 +36,6 @@ function onScroll(callback) {
 // --- Navbar scroll effect ---
 const nav = document.getElementById('nav');
 
-// --- Ghost letter parallax ---
-const ghosts = document.querySelectorAll('.section-ghost');
-
-function updateParallax() {
-  if (prefersReducedMotion) return;
-  const scrollY = window.scrollY;
-  const vh = window.innerHeight;
-  ghosts.forEach(ghost => {
-    const section = ghost.parentElement;
-    const rect = section.getBoundingClientRect();
-    // Only update when section is near viewport
-    if (rect.bottom < -200 || rect.top > vh + 200) return;
-    // Parallax: ghost moves at 0.3x speed relative to section
-    const sectionCenter = rect.top + rect.height / 2;
-    const offset = (sectionCenter - vh / 2) * 0.15;
-    ghost.style.setProperty('--parallax-y', offset + 'px');
-  });
-}
-
 // --- Hero logo fade on nav proximity ---
 const heroLogo = document.querySelector('.hero-logo');
 function updateHeroLogoFade() {
@@ -79,7 +60,6 @@ window.addEventListener('scroll', () => onScroll(() => {
   } else {
     nav.classList.remove('scrolled');
   }
-  updateParallax();
   updateHeroLogoFade();
 }));
 
