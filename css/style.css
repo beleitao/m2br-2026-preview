@@ -488,7 +488,9 @@ h1, h2, h3, h4 {
   z-index: 3;
   display: flex;
   align-items: flex-start;
-  gap: 60px;
+  gap: 48px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .hero-brand {
@@ -496,7 +498,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-logo {
-  width: 180px;
+  width: 140px;
   height: auto;
   transition: filter 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
   will-change: opacity, transform;
@@ -510,25 +512,28 @@ h1, h2, h3, h4 {
 }
 
 .hero-content {
-  max-width: 700px;
+  max-width: 720px;
 }
 
 .hero-content .hero-tagline {
   color: var(--red);
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
   opacity: 0;
   transform: translateY(20px);
   animation: heroFadeIn 0.7s ease forwards 0.2s;
 }
 
 .hero-content h1 {
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
   letter-spacing: -0.02em;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   font-weight: 800;
+  line-height: 1.08;
   opacity: 0;
   transform: translateY(20px);
   animation: heroFadeIn 0.7s ease forwards 0.5s;
@@ -536,9 +541,9 @@ h1, h2, h3, h4 {
 
 .hero-content .hero-desc {
   color: var(--hero-desc);
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.7;
-  max-width: 560px;
+  max-width: 520px;
   opacity: 0;
   transform: translateY(20px);
   animation: heroFadeIn 0.7s ease forwards 0.8s;
@@ -1411,7 +1416,13 @@ h1, h2, h3, h4 {
 
   .hero .container {
     flex-direction: column;
-    gap: 30px;
+    gap: 24px;
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+
+  .hero-logo {
+    width: 100px;
   }
 
   .service-name {
@@ -1581,7 +1592,11 @@ h1, h2, h3, h4 {
   }
 
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+
+  .hero-content .hero-desc {
+    font-size: 0.9rem;
   }
 
   .section-title {
@@ -1649,7 +1664,11 @@ h1, h2, h3, h4 {
   }
 
   .hero-content h1 {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
+  }
+
+  .hero-logo {
+    width: 80px;
   }
 
   .section-title {
