@@ -130,14 +130,6 @@ h1, h2, h3, h4 {
   margin-bottom: 1rem;
 }
 
-.section-sidebar .section-title::before {
-  content: '';
-  display: block;
-  width: 28px;
-  height: 3px;
-  background: var(--red);
-  margin-bottom: 16px;
-}
 
 .section-desc {
   color: var(--text-secondary);
