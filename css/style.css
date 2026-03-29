@@ -22,7 +22,7 @@
   --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   --font-body: 'Inter', 'Helvetica Neue', sans-serif;
   --max-width: 1400px;
-  --section-padding: 100px 0;
+  --section-padding: 72px 0;
 
   /* Theme tokens (dark default) */
   --bg-primary: #000000;
@@ -1235,7 +1235,7 @@ h1, h2, h3, h4 {
 
 @media (max-width: 768px) {
   :root {
-    --section-padding: 60px 0;
+    --section-padding: 48px 0;
   }
 
   .container {
