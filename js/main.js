@@ -239,7 +239,7 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
   const PARTICLE_COUNT_BASE = 100;
   const CONNECTION_DIST = 170;
   const MOUSE_RADIUS = 220;
-  const RED = { r: 227, g: 31, b: 43 };
+  const RED = { r: 227, g: 32, b: 44 };
 
   function isLightMode() {
     return document.documentElement.getAttribute('data-theme') === 'light';
