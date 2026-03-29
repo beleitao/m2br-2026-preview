@@ -464,7 +464,7 @@ h1, h2, h3, h4 {
 
 .section-sidebar {
   position: sticky;
-  top: 72px;
+  top: 120px;
 }
 
 /* --- Cases Grid (4 columns like Brandtech) --- */
