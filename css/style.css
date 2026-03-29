@@ -124,29 +124,19 @@ h1, h2, h3, h4 {
   line-height: 1.1;
 }
 
-.section-icon {
-  color: var(--red);
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 0.25rem;
-}
-
 .section-title {
   font-size: 2.5rem;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
 
-.section-subtitle {
-  color: var(--red);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.5rem;
+.section-sidebar .section-title::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--red);
+  margin-bottom: 16px;
 }
 
 .section-desc {
@@ -389,14 +379,6 @@ h1, h2, h3, h4 {
   will-change: opacity, transform;
 }
 
-.section-logo {
-  width: 80px;
-  height: auto;
-  margin-bottom: 12px;
-  transition: filter 0.4s ease, opacity 0.3s ease, transform 0.3s ease;
-  will-change: opacity, transform;
-}
-
 .footer-logo {
   height: 44px;
   width: auto;
@@ -474,38 +456,6 @@ h1, h2, h3, h4 {
 @keyframes pulse {
   0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
   50% { opacity: 1; transform: translateX(-50%) translateY(6px); }
-}
-
-/* --- Section Accent Letter --- */
-.section-accent {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 6rem;
-  font-weight: 900;
-  line-height: 0.85;
-  color: var(--red);
-  opacity: 0.22;
-  margin-bottom: 18px;
-  letter-spacing: -0.04em;
-  position: relative;
-  user-select: none;
-  transition: opacity 0.4s ease;
-}
-
-.section-accent::after {
-  content: '';
-  display: block;
-  width: 36px;
-  height: 3px;
-  background: var(--red);
-  margin-top: 14px;
-  opacity: 0.7;
-  border-radius: 2px;
-}
-
-.section-light .section-accent {
-  color: var(--red);
-  opacity: 0.18;
 }
 
 /* --- Section Layout: Sidebar + Grid (Brandtech pattern) --- */
@@ -1289,19 +1239,11 @@ h1, h2, h3, h4 {
     gap: 30px;
   }
 
-  .hero-brand .brand-icon {
-    font-size: 5rem;
-  }
 }
 
 @media (max-width: 768px) {
   :root {
     --section-padding: 60px 0;
-  }
-
-  .section-accent {
-    font-size: 4rem;
-    margin-bottom: 12px;
   }
 
   .container {
