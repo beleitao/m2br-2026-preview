@@ -130,7 +130,6 @@ h1, h2, h3, h4 {
   margin-bottom: 1rem;
 }
 
-
 .section-desc {
   color: var(--text-secondary);
   font-size: 0.95rem;
@@ -459,8 +458,8 @@ h1, h2, h3, h4 {
 
 .section-layout {
   display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 60px;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
   align-items: start;
 }
 
@@ -632,15 +631,15 @@ h1, h2, h3, h4 {
 /* --- Clients Section --- */
 .section-light {
   background: var(--bg-surface);
-  color: var(--text-inverse);
+  color: var(--black);
 }
 
-[data-theme="light"] .section-light {
-  color: var(--text-primary);
+.section-light .section-title {
+  color: var(--black);
 }
 
 .section-light .section-desc {
-  color: var(--text-secondary);
+  color: var(--gray-dark);
 }
 
 .clients-grid {
