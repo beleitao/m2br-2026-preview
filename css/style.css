@@ -250,11 +250,17 @@ h1, h2, h3, h4 {
   color: var(--red);
 }
 
-/* WhatsApp — filled green */
+/* WhatsApp — circle icon */
 .nav-cta--whatsapp {
+  width: 36px;
+  height: 36px;
+  padding: 0;
   border: 1.5px solid #25D366;
   background: #25D366;
   color: #fff;
+  border-radius: 50%;
+  justify-content: center;
+  gap: 0;
 }
 
 .nav-cta--whatsapp:hover {
@@ -1037,22 +1043,15 @@ h1, h2, h3, h4 {
 .btn-whatsapp {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
   background: #25D366;
   color: #fff;
-  padding: 14px 40px;
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   border: 2px solid #25D366;
-  border-radius: 50px;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.35s ease;
-}
-
-.btn-whatsapp svg {
   flex-shrink: 0;
 }
 
