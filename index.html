@@ -98,11 +98,18 @@
         <div class="section-sidebar fade-up">
           <h2 class="section-title">Nossos Cases</h2>
           <p class="section-desc">Resultados reais para marcas que querem crescer. Cada projeto é uma história de estratégia, criatividade e tecnologia trabalhando juntas.</p>
+          <div class="filter-pills" data-filter-target="cases-grid">
+            <button class="filter-pill active" data-filter="all">Todos</button>
+            <button class="filter-pill" data-filter="performance">Performance</button>
+            <button class="filter-pill" data-filter="design">Design</button>
+            <button class="filter-pill" data-filter="social">Social</button>
+            <button class="filter-pill" data-filter="tecnologia">Tecnologia</button>
+          </div>
         </div>
-        <div class="cases-grid">
+        <div class="cases-grid" id="cases-grid">
 
           <!-- Card: A Noviça Rebelde -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="performance">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/A-NOVICA-REBELDE-2.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -124,12 +131,12 @@
           </div>
 
           <!-- Quote Card -->
-          <div class="card-quote fade-up">
+          <div class="card-quote fade-up" data-category="all">
             <div class="quote-text">Quando o digital encanta, os resultados surpreendem</div>
           </div>
 
           <!-- Card: Impulsiona -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="social performance">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/imp_cover.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -151,7 +158,7 @@
           </div>
 
           <!-- Card: Grupo Technos -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="performance">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/technos-cover.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -173,12 +180,12 @@
           </div>
 
           <!-- Quote Card -->
-          <div class="card-quote fade-up">
+          <div class="card-quote fade-up" data-category="all">
             <div class="quote-text">Estratégia digital para resultados reais</div>
           </div>
 
           <!-- Card: Grupo Toquinho -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="social design">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/cover-grupo-toquinho.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -200,7 +207,7 @@
           </div>
 
           <!-- Card: Casa & Video -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="design social">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/cv-case-cover.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -212,12 +219,12 @@
           </div>
 
           <!-- Quote Card -->
-          <div class="card-quote fade-up">
+          <div class="card-quote fade-up" data-category="all">
             <div class="quote-text">Quando a inovação inspira, o crescimento acontece</div>
           </div>
 
           <!-- Card: Windsor Hotéis -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="tecnologia performance social">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/cover-windsor.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -239,7 +246,7 @@
           </div>
 
           <!-- Card: M2BR Academy -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="tecnologia social performance">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/academy-bw-cover.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -261,7 +268,7 @@
           </div>
 
           <!-- Card: Spa das Sobrancelhas -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="performance social">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/cover-spa-da-sobrancelha.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -283,12 +290,12 @@
           </div>
 
           <!-- Quote Card -->
-          <div class="card-quote fade-up">
+          <div class="card-quote fade-up" data-category="all">
             <div class="quote-text">A tecnologia transforma, a criatividade conecta</div>
           </div>
 
           <!-- Card: Geek & Game -->
-          <div class="card card-has-bg fade-up">
+          <div class="card card-has-bg fade-up" data-category="performance social">
             <img class="card-bg" src="https://agencia.m2br.com/wp-content/uploads/2024/10/ggrf-cover.jpg" alt="" loading="lazy">
             <div class="card-content">
               <div>
@@ -331,43 +338,51 @@
         <div class="section-sidebar fade-up">
           <h2 class="section-title">Nossos Clientes</h2>
           <p class="section-desc">Marcas que confiam na M2BR para suas estratégias digitais. De startups a grandes corporações, entregamos resultados para todos.</p>
+          <div class="filter-pills" data-filter-target="clients-grid">
+            <button class="filter-pill active" data-filter="all">Todos</button>
+            <button class="filter-pill" data-filter="industria">Indústria</button>
+            <button class="filter-pill" data-filter="terceiro-setor">Terceiro Setor</button>
+            <button class="filter-pill" data-filter="educacao">Educação</button>
+            <button class="filter-pill" data-filter="juridico">Jurídico</button>
+            <button class="filter-pill" data-filter="entretenimento">Entretenimento</button>
+          </div>
         </div>
         <div>
-          <div class="clients-grid fade-up">
-            <div class="client-logo">
+          <div class="clients-grid fade-up" id="clients-grid">
+            <div class="client-logo" data-segment="industria">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_scjohnson.png" alt="SC Johnson" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="industria">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_michelin.png" alt="Michelin" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="entretenimento">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_globo.png" alt="Globo" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="terceiro-setor">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_impulsiona.png" alt="Impulsiona" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="industria">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_basel.png" alt="Basel" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="juridico">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/bma.png" alt="BMA" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="terceiro-setor">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_vivescer.png" alt="Vivescer" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="educacao">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_m2br_academy.png" alt="M2BR Academy" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="industria">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_homehub.png" alt="HomeHub" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="industria">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_leather_labs.png" alt="Leather Labs" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="entretenimento">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_alegria.png" alt="Alegria" loading="lazy">
             </div>
-            <div class="client-logo">
+            <div class="client-logo" data-segment="terceiro-setor">
               <img src="https://agencia.m2br.com/wp-content/uploads/2024/10/logo_aprendiz_legal.png" alt="Aprendiz Legal" loading="lazy">
             </div>
           </div>

@@ -137,6 +137,76 @@ h1, h2, h3, h4 {
   max-width: 280px;
 }
 
+/* --- Filter Pills --- */
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.filter-pill {
+  padding: 6px 16px;
+  border: 1px solid var(--border-medium);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.filter-pill.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.section-light .filter-pill {
+  border-color: rgba(0,0,0,0.15);
+  color: var(--gray-dark);
+}
+
+.section-light .filter-pill:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.section-light .filter-pill.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+/* Filter transition on items */
+[data-category],
+[data-segment] {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+[data-category].filter-hidden,
+[data-segment].filter-hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 /* --- Container --- */
 .container {
   max-width: var(--max-width);
@@ -1328,6 +1398,18 @@ h1, h2, h3, h4 {
 
   .nav-links a {
     font-size: 1.2rem;
+  }
+
+  .filter-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .filter-pills::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-ctas {

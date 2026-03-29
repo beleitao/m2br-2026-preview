@@ -195,6 +195,39 @@ const numberObserver = new IntersectionObserver((entries) => {
 
 numberElements.forEach(el => numberObserver.observe(el));
 
+// --- Filter System (Cases & Clients) ---
+document.querySelectorAll('.filter-pills').forEach(pillGroup => {
+  const targetId = pillGroup.getAttribute('data-filter-target');
+  const container = document.getElementById(targetId);
+  if (!container) return;
+
+  // Determine attribute name based on section
+  const isCases = targetId === 'cases-grid';
+  const attr = isCases ? 'data-category' : 'data-segment';
+
+  pillGroup.addEventListener('click', (e) => {
+    const pill = e.target.closest('.filter-pill');
+    if (!pill) return;
+
+    const filter = pill.getAttribute('data-filter');
+
+    // Update active state
+    pillGroup.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+
+    // Filter items
+    const items = container.querySelectorAll(`[${attr}]`);
+    items.forEach(item => {
+      const categories = item.getAttribute(attr) || '';
+      if (filter === 'all' || categories === 'all' || categories.includes(filter)) {
+        item.classList.remove('filter-hidden');
+      } else {
+        item.classList.add('filter-hidden');
+      }
+    });
+  });
+});
+
 // --- Hero Particle Network ---
 (function () {
   const canvas = document.getElementById('heroParticles');
