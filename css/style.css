@@ -592,11 +592,17 @@ h1, h2, h3, h4 {
   grid-template-columns: 240px 1fr;
   gap: 48px;
   align-items: start;
+  min-width: 0;
+}
+
+.section-layout > * {
+  min-width: 0;
 }
 
 .section-sidebar {
   position: sticky;
   top: 120px;
+  min-width: 0;
 }
 
 /* --- Cases Grid (4 columns like Brandtech) --- */
@@ -1356,7 +1362,7 @@ h1, h2, h3, h4 {
 
 @media (max-width: 992px) {
   .section-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
 
@@ -1366,6 +1372,9 @@ h1, h2, h3, h4 {
     z-index: 10;
     background: var(--bg-primary);
     padding: 16px 0 20px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .section-light .section-sidebar {
@@ -1374,6 +1383,7 @@ h1, h2, h3, h4 {
 
   .section-desc {
     max-width: 100%;
+    font-size: 0.88rem;
   }
 
   .cases-grid {
@@ -1404,6 +1414,9 @@ h1, h2, h3, h4 {
     gap: 30px;
   }
 
+  .service-name {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1443,10 +1456,16 @@ h1, h2, h3, h4 {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 4px;
+    margin-top: 14px;
   }
 
   .filter-pills::-webkit-scrollbar {
     display: none;
+  }
+
+  .filter-pill {
+    padding: 5px 12px;
+    font-size: 0.7rem;
   }
 
   .nav-ctas {
@@ -1464,16 +1483,73 @@ h1, h2, h3, h4 {
   }
 
   .cases-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .card {
+    min-height: 220px;
+    padding: 24px 20px;
+  }
+
+  .card-has-bg .card-content {
+    padding: 24px 20px;
+    min-height: 220px;
+  }
+
+  .card-client {
+    font-size: 1.1rem;
+  }
+
+  .card-services {
+    font-size: 0.78rem;
+  }
+
+  .card-metric .metric-value {
+    font-size: 1.05rem;
+  }
+
+  .card-metric .metric-label {
+    font-size: 0.65rem;
+  }
+
+  .card-metrics {
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .card-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 0.65rem;
+  }
+
+  .card-quote {
+    min-height: 180px;
+    padding: 24px 20px;
+  }
+
+  .card-quote .quote-text {
+    font-size: 1.15rem;
   }
 
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .team-quote {
     aspect-ratio: auto;
-    min-height: 180px;
+    min-height: 160px;
+    padding: 24px 20px;
+  }
+
+  .team-quote .quote-text {
+    font-size: 1.15rem;
+  }
+
+  .team-name {
+    font-size: 1.05rem;
   }
 
   .clients-grid {
@@ -1498,34 +1574,72 @@ h1, h2, h3, h4 {
     gap: 32px;
   }
 
-  .hero-content h1 {
-    font-size: 2.2rem;
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
   }
 
-  .section-title {
+  .hero-content h1 {
     font-size: 2rem;
   }
 
-  .service-item {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .service-desc {
-    text-align: left;
-    max-width: 100%;
-  }
-
-  .banner-text {
+  .section-title {
     font-size: 1.8rem;
   }
 
+  .section-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .service-item {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+
+  .service-name {
+    font-size: 1.1rem;
+  }
+
+  .service-desc {
+    display: none;
+  }
+
+  .service-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .banner-text {
+    font-size: 1.6rem;
+  }
+
   .badges-row {
-    gap: 32px;
+    gap: 24px;
   }
 
   .section-sidebar {
     max-width: 100%;
+  }
+
+  .cta-section {
+    padding: 80px 0;
+  }
+
+  .cta-content h2 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+  }
+
+  .btn-primary {
+    padding: 12px 28px;
+    font-size: 0.82rem;
+  }
+
+  .btn-whatsapp {
+    width: 46px;
+    height: 46px;
   }
 }
 
@@ -1535,19 +1649,36 @@ h1, h2, h3, h4 {
   }
 
   .hero-content h1 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .section-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .banner-text {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
 
   .number-value {
     font-size: 2.5rem;
+  }
+
+  .cases-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card {
+    min-height: 200px;
+  }
+
+  .card-has-bg .card-content {
+    min-height: 200px;
+  }
+
+  .card-quote {
+    min-height: 140px;
   }
 
   .clients-grid {
@@ -1564,17 +1695,33 @@ h1, h2, h3, h4 {
   }
 
   .team-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
-  .team-card {
-    max-width: 280px;
-    margin: 0 auto;
+  .team-name {
+    font-size: 0.9rem;
+  }
+
+  .team-role {
+    font-size: 0.68rem;
+  }
+
+  .team-label {
+    padding: 16px 14px 14px;
+  }
+
+  .team-quote {
+    min-height: 140px;
+    padding: 20px 16px;
+  }
+
+  .team-quote .quote-text {
+    font-size: 1rem;
   }
 
   .cta-content h2 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   .badge-item img {
@@ -1585,5 +1732,9 @@ h1, h2, h3, h4 {
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .number-label {
+    font-size: 0.75rem;
   }
 }
