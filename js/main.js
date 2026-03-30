@@ -240,6 +240,12 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
   const CONNECTION_DIST = 170;
   const MOUSE_RADIUS = 220;
   const RED = { r: 227, g: 32, b: 44 };
+  const accentTarget = { r: 227, g: 32, b: 44 };
+  const accentCurrent = { r: 227, g: 32, b: 44 };
+
+  window._setParticleAccent = function(r, g, b) {
+    accentTarget.r = r; accentTarget.g = g; accentTarget.b = b;
+  };
 
   function isLightMode() {
     return document.documentElement.getAttribute('data-theme') === 'light';
@@ -277,6 +283,11 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
+    // Lerp accent color
+    accentCurrent.r += (accentTarget.r - accentCurrent.r) * 0.03;
+    accentCurrent.g += (accentTarget.g - accentCurrent.g) * 0.03;
+    accentCurrent.b += (accentTarget.b - accentCurrent.b) * 0.03;
+    const AR = Math.round(accentCurrent.r), AG = Math.round(accentCurrent.g), AB = Math.round(accentCurrent.b);
     const light = isLightMode();
     const baseR = light ? 0 : 255;
     const baseG = light ? 0 : 255;
@@ -294,7 +305,7 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
           const bothAccent = particles[i].accent || particles[j].accent;
 
           if (bothAccent) {
-            ctx.strokeStyle = `rgba(${RED.r},${RED.g},${RED.b},${opacity * 1.2})`;
+            ctx.strokeStyle = `rgba(${AR},${AG},${AB},${opacity * 1.2})`;
           } else {
             ctx.strokeStyle = `rgba(${baseR},${baseG},${baseB},${opacity})`;
           }
@@ -312,7 +323,7 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
       const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
       if (mDist < MOUSE_RADIUS) {
         const opacity = (1 - mDist / MOUSE_RADIUS) * 0.5;
-        ctx.strokeStyle = `rgba(${RED.r},${RED.g},${RED.b},${opacity})`;
+        ctx.strokeStyle = `rgba(${AR},${AG},${AB},${opacity})`;
         ctx.lineWidth = 0.8;
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
@@ -349,7 +360,7 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
 
       // Draw dot
       if (p.accent) {
-        ctx.fillStyle = `rgba(${RED.r},${RED.g},${RED.b},0.9)`;
+        ctx.fillStyle = `rgba(${AR},${AG},${AB},0.9)`;
       } else {
         const dotOpacity = light ? 0.25 : 0.45;
         ctx.fillStyle = `rgba(${baseR},${baseG},${baseB},${dotOpacity})`;
@@ -403,4 +414,136 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
   });
 
   init();
+})();
+
+// --- Hero Slider ---
+(function () {
+  const slides = document.querySelectorAll('.hero-slide');
+  const nodes = document.querySelectorAll('.hero-timeline-node');
+  if (slides.length < 2) return;
+
+  let current = 0;
+  let isTransitioning = false;
+  let autoTimer = null;
+  const AUTO_INTERVAL = 6000;
+
+  function goToSlide(index) {
+    if (index === current || isTransitioning) return;
+    isTransitioning = true;
+
+    const oldSlide = slides[current];
+    const newSlide = slides[index];
+
+    // Update timeline nodes
+    nodes.forEach(n => {
+      n.classList.remove('active');
+      n.setAttribute('aria-current', 'false');
+      // Reset ring animation
+      const circle = n.querySelector('circle');
+      if (circle) {
+        circle.style.animation = 'none';
+        circle.offsetHeight; // reflow
+        circle.style.animation = '';
+      }
+    });
+
+    // Exit current slide
+    oldSlide.classList.add('exiting');
+
+    // After exit animation, switch
+    setTimeout(() => {
+      oldSlide.classList.remove('active', 'exiting');
+      oldSlide.setAttribute('aria-hidden', 'true');
+
+      // Activate new slide
+      newSlide.classList.add('active');
+      newSlide.removeAttribute('aria-hidden');
+
+      // Activate timeline node
+      nodes[index].classList.add('active');
+      nodes[index].setAttribute('aria-current', 'true');
+
+      // Update particle accent color
+      const accent = newSlide.getAttribute('data-accent');
+      if (accent && window._setParticleAccent) {
+        const [r, g, b] = accent.split(',').map(Number);
+        window._setParticleAccent(r, g, b);
+      }
+
+      current = index;
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 800);
+    }, 350);
+
+    resetAutoProgress();
+  }
+
+  function nextSlide() {
+    goToSlide((current + 1) % slides.length);
+  }
+
+  function resetAutoProgress() {
+    clearTimeout(autoTimer);
+    // Restart ring animation on active node
+    const activeNode = nodes[current] || nodes[0];
+    const circle = activeNode.querySelector('circle');
+    if (circle) {
+      circle.style.animation = 'none';
+      circle.offsetHeight;
+      circle.style.animation = '';
+    }
+    autoTimer = setTimeout(nextSlide, AUTO_INTERVAL);
+  }
+
+  // Timeline node click
+  nodes.forEach(node => {
+    node.addEventListener('click', () => {
+      const idx = parseInt(node.getAttribute('data-goto'));
+      goToSlide(idx);
+    });
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const hero = document.getElementById('home');
+    const rect = hero.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      goToSlide((current + 1) % slides.length);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      goToSlide((current - 1 + slides.length) % slides.length);
+    }
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  const heroEl = document.getElementById('heroSlider');
+  heroEl.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  heroEl.addEventListener('touchend', (e) => {
+    const delta = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(delta) > 50) {
+      if (delta < 0) goToSlide((current + 1) % slides.length);
+      else goToSlide((current - 1 + slides.length) % slides.length);
+    }
+  }, { passive: true });
+
+  // Pause on hover
+  const heroSection = document.getElementById('home');
+  heroSection.addEventListener('mouseenter', () => clearTimeout(autoTimer));
+  heroSection.addEventListener('mouseleave', () => {
+    autoTimer = setTimeout(nextSlide, AUTO_INTERVAL);
+  });
+
+  // Init: activate first node ring
+  nodes[0].classList.add('active');
+  nodes[0].setAttribute('aria-current', 'true');
+  resetAutoProgress();
 })();
