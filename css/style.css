@@ -530,10 +530,11 @@ h1, h2, h3, h4 {
 
 .hero-content h1 {
   font-size: clamp(2rem, 3.5vw, 2.8rem);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin-bottom: 28px;
-  font-weight: 800;
-  line-height: 1.08;
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: none;
   opacity: 0;
   transform: translateY(20px);
   animation: heroFadeIn 0.7s ease forwards 0.5s;
@@ -916,11 +917,11 @@ h1, h2, h3, h4 {
 
 .banner-text {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 1.1;
-  max-width: 700px;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  font-weight: 700;
+  text-transform: none;
+  line-height: 1.2;
+  max-width: 650px;
 }
 
 /* --- About / Numbers --- */
@@ -1113,8 +1114,11 @@ h1, h2, h3, h4 {
 }
 
 .cta-content h2 {
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
   margin-bottom: 32px;
+  text-transform: none;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .cta-content h2 .highlight {
