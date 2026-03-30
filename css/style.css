@@ -107,26 +107,28 @@
 [data-theme="light"] .footer-logo { filter: brightness(0); }
 [data-theme="light"] .hero-logo { filter: none; }
 [data-theme="light"] .nav-toggle span { background: var(--black); }
-/* Hero stays dark in light mode for contrast */
-[data-theme="light"] .hero { background: var(--black); color: var(--white); }
-[data-theme="light"] .hero-slide h1 { color: var(--white); }
+/* Hero light mode — slide 0 gets light bg, case slides keep dark overlay */
+[data-theme="light"] .hero { background: var(--bg-primary); }
+[data-theme="light"] .hero-slide h1 { color: var(--text-primary); }
 [data-theme="light"] .hero-tagline { color: var(--red); }
-[data-theme="light"] .hero-desc { color: rgba(255,255,255,0.7); }
-[data-theme="light"] .hero-scroll { color: rgba(255,255,255,0.4); }
-[data-theme="light"] .hero-case-link { color: var(--white); border-color: rgba(255,255,255,0.3); }
+[data-theme="light"] .hero-desc { color: var(--text-secondary); }
+[data-theme="light"] .hero-scroll { color: rgba(0,0,0,0.3); }
+[data-theme="light"] .hero-scroll svg { filter: drop-shadow(0 0 6px rgba(255,255,255,0.8)); }
+[data-theme="light"] .hero-node-label { color: rgba(0,0,0,0.45); text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.6); }
+[data-theme="light"] .hero-timeline-node.active .hero-node-label { color: var(--red); text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.6); }
+[data-theme="light"] .hero-node-ring circle { stroke: rgba(0,0,0,0.12); }
+[data-theme="light"] .hero-timeline-node::before { background: rgba(0,0,0,0.25); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
+[data-theme="light"] .hero-timeline-node.active::before { background: var(--red); box-shadow: 0 0 12px rgba(227,32,44,0.4); }
+[data-theme="light"] .hero-timeline-line { background: rgba(0,0,0,0.08); }
+[data-theme="light"] .hero-case-link { color: var(--text-primary); border-color: rgba(0,0,0,0.2); }
 [data-theme="light"] .hero-metric-value { color: var(--red); }
-[data-theme="light"] .hero-metric-label { color: rgba(255,255,255,0.7); }
-[data-theme="light"] .hero-node-label { color: rgba(255,255,255,0.4); }
-[data-theme="light"] .hero-timeline-node.active .hero-node-label { color: var(--white); }
-[data-theme="light"] .hero-node-ring circle { stroke: rgba(255,255,255,0.15); }
-[data-theme="light"] .hero-timeline-node::before { background: rgba(255,255,255,0.3); }
-[data-theme="light"] .hero-timeline-line { background: rgba(255,255,255,0.1); }
-/* Nav over dark hero in light mode - keep text white until scrolled */
-[data-theme="light"] .nav:not(.scrolled) .nav-links a { color: var(--white); }
-[data-theme="light"] .nav:not(.scrolled) .nav-logo-img { filter: none; }
-[data-theme="light"] .nav:not(.scrolled) .nav-toggle span { background: var(--white); }
-[data-theme="light"] .nav:not(.scrolled) .nav-cta--contato { border-color: rgba(255,255,255,0.3); color: var(--white); }
-[data-theme="light"] .nav:not(.scrolled) .theme-toggle-track { border-color: rgba(255,255,255,0.3); }
+[data-theme="light"] .hero-metric-label { color: var(--text-secondary); }
+/* Case study slides with bg image — force white text over dark overlay */
+[data-theme="light"] .hero-slide-bg + .hero-slide-content h1 { color: var(--white); }
+[data-theme="light"] .hero-slide-bg + .hero-slide-content .hero-tagline { color: var(--red); }
+[data-theme="light"] .hero-slide-bg + .hero-slide-content .hero-desc { color: rgba(255,255,255,0.7); }
+[data-theme="light"] .hero-slide-bg + .hero-slide-content .hero-case-link { color: var(--white); border-color: rgba(255,255,255,0.3); }
+[data-theme="light"] .hero-slide-bg + .hero-slide-content .hero-metric-label { color: rgba(255,255,255,0.7); }
 [data-theme="light"] .card-quote { background: var(--red); color: var(--white); }
 [data-theme="light"] .team-quote { background: var(--red); }
 [data-theme="light"] .team-name { color: var(--text-primary); }
