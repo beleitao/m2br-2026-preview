@@ -555,3 +555,119 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
   nodes[0].setAttribute('aria-current', 'true');
   resetAutoProgress();
 })();
+
+// --- Contact Modal ---
+(function () {
+  const modal = document.getElementById('contactModal');
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('contactSuccess');
+  if (!modal) return;
+
+  let lastFocused = null;
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // Focus first input after animation
+    setTimeout(() => {
+      const first = modal.querySelector('.form-input');
+      if (first) first.focus();
+    }, 400);
+  }
+
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+    // Reset form after close animation
+    setTimeout(() => {
+      if (form) {
+        form.reset();
+        form.querySelectorAll('.form-input').forEach(i => i.classList.remove('error'));
+        form.style.display = '';
+      }
+      if (success) success.hidden = true;
+    }, 400);
+  }
+
+  // Open triggers
+  document.querySelectorAll('[data-open-contact]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  // Close triggers
+  modal.querySelectorAll('[data-close-modal]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+
+  // Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+      closeModal();
+    }
+  });
+
+  // Focus trap
+  modal.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = modal.querySelectorAll('button, input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  // Form validation & submission
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      form.querySelectorAll('[required]').forEach(input => {
+        input.classList.remove('error');
+        if (!input.value.trim()) {
+          input.classList.add('error');
+          valid = false;
+        }
+        if (input.type === 'email' && input.value.trim()) {
+          const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRe.test(input.value.trim())) {
+            input.classList.add('error');
+            valid = false;
+          }
+        }
+      });
+
+      if (!valid) {
+        form.querySelector('.error')?.focus();
+        return;
+      }
+
+      // Simulate sending (replace with real endpoint later)
+      const submitBtn = form.querySelector('.form-submit');
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.form-submit-text').textContent = 'Enviando...';
+
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.hidden = false;
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.form-submit-text').textContent = 'Enviar mensagem';
+      }, 1200);
+    });
+
+    // Clear error on input
+    form.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('input', () => input.classList.remove('error'));
+    });
+  }
+})();
