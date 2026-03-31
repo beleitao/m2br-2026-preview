@@ -459,6 +459,14 @@ document.querySelectorAll('.filter-pills').forEach(pillGroup => {
       newSlide.classList.add('active');
       newSlide.removeAttribute('aria-hidden');
 
+      // Toggle dark-slide class for light mode timeline colors
+      const heroEl = document.getElementById('home');
+      if (newSlide.querySelector('.hero-slide-bg')) {
+        heroEl.classList.add('hero--dark-slide');
+      } else {
+        heroEl.classList.remove('hero--dark-slide');
+      }
+
       // Activate timeline node
       nodes[index].classList.add('active');
       nodes[index].setAttribute('aria-current', 'true');

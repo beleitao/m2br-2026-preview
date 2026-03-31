@@ -113,13 +113,20 @@
 [data-theme="light"] .hero-tagline { color: var(--red); }
 [data-theme="light"] .hero-desc { color: var(--text-secondary); }
 [data-theme="light"] .hero-scroll { color: rgba(0,0,0,0.3); }
-[data-theme="light"] .hero-scroll svg { filter: drop-shadow(0 0 6px rgba(255,255,255,0.8)); }
-[data-theme="light"] .hero-node-label { color: rgba(0,0,0,0.45); text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.6); }
-[data-theme="light"] .hero-timeline-node.active .hero-node-label { color: var(--red); text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.6); }
-[data-theme="light"] .hero-node-ring circle { stroke: rgba(0,0,0,0.12); }
-[data-theme="light"] .hero-timeline-node::before { background: rgba(0,0,0,0.25); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
-[data-theme="light"] .hero-timeline-node.active::before { background: var(--red); box-shadow: 0 0 12px rgba(227,32,44,0.4); }
-[data-theme="light"] .hero-timeline-line { background: rgba(0,0,0,0.08); }
+[data-theme="light"] .hero-node-label { color: rgba(0,0,0,0.4); transition: color 0.5s ease; }
+[data-theme="light"] .hero-timeline-node.active .hero-node-label { color: var(--red); }
+[data-theme="light"] .hero-node-ring circle { stroke: rgba(0,0,0,0.12); transition: stroke 0.5s ease; }
+[data-theme="light"] .hero-timeline-node::before { background: rgba(0,0,0,0.2); transition: background 0.5s ease; }
+[data-theme="light"] .hero-timeline-node.active::before { background: var(--red); }
+[data-theme="light"] .hero-timeline-line { background: rgba(0,0,0,0.08); transition: background 0.5s ease; }
+/* When a case slide with dark bg is active */
+[data-theme="light"] .hero.hero--dark-slide .hero-node-label { color: rgba(255,255,255,0.4); }
+[data-theme="light"] .hero.hero--dark-slide .hero-timeline-node.active .hero-node-label { color: var(--white); }
+[data-theme="light"] .hero.hero--dark-slide .hero-node-ring circle { stroke: rgba(255,255,255,0.15); }
+[data-theme="light"] .hero.hero--dark-slide .hero-timeline-node::before { background: rgba(255,255,255,0.3); }
+[data-theme="light"] .hero.hero--dark-slide .hero-timeline-node.active::before { background: var(--red); }
+[data-theme="light"] .hero.hero--dark-slide .hero-timeline-line { background: rgba(255,255,255,0.1); }
+[data-theme="light"] .hero.hero--dark-slide .hero-scroll { color: rgba(255,255,255,0.4); }
 [data-theme="light"] .hero-case-link { color: var(--text-primary); border-color: rgba(0,0,0,0.2); }
 [data-theme="light"] .hero-metric-value { color: var(--red); }
 [data-theme="light"] .hero-metric-label { color: var(--text-secondary); }
