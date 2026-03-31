@@ -1748,6 +1748,24 @@ a.contact-channel:hover {
   line-height: 1.4;
 }
 
+/* Form section divider */
+.form-section-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.form-section-label + .form-row,
+.form-section-label + .form-group {
+  margin-top: 0;
+}
+
 /* Success State */
 .contact-success {
   display: flex;
