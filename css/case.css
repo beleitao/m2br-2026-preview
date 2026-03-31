@@ -454,54 +454,21 @@
   overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  aspect-ratio: 9 / 16;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: transform 0.35s ease, border-color 0.35s ease;
+  min-height: 580px;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .case-reel-card:hover {
   transform: translateY(-4px);
   border-color: var(--red);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-.case-reel-thumb {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: rgba(227, 32, 44, 0.12);
-  color: var(--red);
-  transition: all 0.35s ease;
-}
-
-.case-reel-card:hover .case-reel-thumb {
-  background: var(--red);
-  color: #fff;
-  transform: scale(1.08);
-}
-
-.case-reel-play {
-  width: 28px;
-  height: 28px;
-}
-
-.case-reel-label {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
+.case-reel-card iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 /* --- Results Grid --- */
@@ -722,8 +689,8 @@
   background: rgba(227, 32, 44, 0.1);
 }
 
-[data-theme="light"] .case-reel-thumb {
-  background: rgba(227, 32, 44, 0.1);
+[data-theme="light"] .case-reel-card {
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 /* --- Footer (simplified for case pages) --- */
@@ -846,6 +813,10 @@
     gap: 12px;
   }
 
+  .case-reel-card {
+    min-height: 480px;
+  }
+
   .case-results-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -892,21 +863,11 @@
   }
 
   .case-reels-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .case-reel-card {
-    aspect-ratio: 9 / 14;
-  }
-
-  .case-reel-thumb {
-    width: 56px;
-    height: 56px;
-  }
-
-  .case-reel-play {
-    width: 22px;
-    height: 22px;
+    min-height: 520px;
   }
 }
