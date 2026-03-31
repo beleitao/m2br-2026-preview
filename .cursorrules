@@ -1,0 +1,85 @@
+# M2BR 2026 — Agency Website
+# Cursor AI Project Rules
+
+## Project Overview
+Site institucional da agência M2BR (m2br.com), versão 2026.
+Single-page com subpáginas de case study.
+Stack: HTML/CSS/JS puro — sem frameworks, sem build tools.
+
+## Architecture
+```
+index.html          → Página principal (hero carousel, cases, clientes, serviços, sobre, time, CTA, footer)
+cases/tutu.html     → Template de case study (replicável para novos cases)
+css/style.css       → Estilos globais + página principal (~2600 linhas)
+css/case.css        → Estilos específicos da página de case (~1060 linhas)
+js/main.js          → JavaScript da página principal
+assets/fonts/       → Fontes locais (Quadon)
+```
+
+## Design System
+
+### Fonts
+- **Display/Headings:** Quadon (local @font-face)
+- **Body:** Inter (Google Fonts)
+
+### Colors (CSS Custom Properties in :root)
+- `--red: #e3202c` (cor primária da marca)
+- `--black: #000000`
+- `--white: #ffffff`
+- Dark mode (default): `--bg-primary: #000`, `--text-primary: #fff`
+- Light mode `[data-theme="light"]`: `--bg-primary: #fff`, `--text-primary: #111`
+
+### Theme Toggle
+- Dark mode é o padrão
+- Light mode via `data-theme="light"` no `<html>`
+- Toggle alterna via JS e persiste em localStorage
+
+### Border Radius
+- Cards: `16px`
+- Buttons primários: `50px`
+- WhatsApp button: `50%`
+
+### Transitions
+- Cards: `0.4s cubic-bezier(0.22, 1, 0.36, 1)` (transform), `0.3s ease` (border-color)
+- Hover shadows: usar `var(--card-hover-shadow)` — nunca hardcodar rgba
+
+### Animations
+- Load: `.anim-fade-up`, `.anim-split-up`
+- Scroll reveal: `.reveal-target`, `.reveal-slide-right`, `.reveal-slide-left`, `.reveal-scale`
+- Parallax no hero via scroll event + transform
+- Stat counters via requestAnimationFrame
+- Respeitar `prefers-reduced-motion: reduce`
+
+## Key Patterns
+
+### Novo Case Study
+Para criar um novo case, duplicar `cases/tutu.html` e:
+1. Atualizar hero (título, subtítulo, imagem de fundo, tags)
+2. Atualizar seções de conteúdo (contexto, desafio, insight, ideia)
+3. Atualizar DNA cards, stats, gallery, reels
+4. Atualizar related cases no final
+5. Manter mesma estrutura de classes CSS
+
+### Contact Modal
+O modal de contato está embutido no `index.html` e estilizado em `css/style.css`.
+Nas páginas de case, o botão "Contato" linka para `/#contato`.
+
+### Instagram Reels
+Embeds via iframe: `https://www.instagram.com/reel/{ID}/embed/`
+
+## Code Style
+- Indentação: 2 espaços
+- CSS: BEM-like com prefixo de contexto (`.case-*`, `.hero-*`, `.nav-*`)
+- JS: Vanilla, sem dependências externas
+- HTML semântico com sections nomeadas
+
+## Deploy
+- GitHub Pages: `beleitao.github.io/m2br-2026-preview`
+- Branch: `main`
+- Sem build step — arquivos servidos diretamente
+
+## Important Notes
+- Sempre testar ambos os temas (dark e light)
+- Verificar contraste de texto sobre backgrounds escuros/claros
+- Nav é transparente sobre hero — ícones precisam ser brancos no caso de hero escuro
+- Cache bust via query string `?v=YYYYMMDD{letter}` nos links CSS
