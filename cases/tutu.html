@@ -19,8 +19,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="../css/style.css?v=20260331b">
-  <link rel="stylesheet" href="../css/case.css?v=20260331b">
+  <link rel="stylesheet" href="../css/style.css?v=20260331c">
+  <link rel="stylesheet" href="../css/case.css?v=20260331c">
 
   <!-- Favicon -->
   <link rel="icon" href="https://agencia.m2br.com/wp-content/uploads/2022/05/LG.png" type="image/png">
@@ -52,23 +52,26 @@
     </div>
   </nav>
 
+  <!-- ======== PROGRESS BAR ======== -->
+  <div class="case-progress" id="caseProgress"></div>
+
   <main>
 
   <!-- ======== CASE HERO ======== -->
-  <section class="case-hero">
-    <div class="case-hero-bg">
+  <section class="case-hero" id="caseHero">
+    <div class="case-hero-bg" id="heroBg">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC2uo-9POyze7usPRIab5v3Rt98n9JAcy75A&s" alt="" loading="eager">
     </div>
     <div class="container">
       <div class="case-hero-content">
-        <div class="case-hero-meta">
+        <div class="case-hero-meta anim-fade-up" style="--delay: 0.2s">
           <span class="case-tag">Inteligência Artificial</span>
           <span class="case-tag">Criação</span>
           <span class="case-tag">Social Media</span>
         </div>
-        <h1 class="case-hero-title">Tutu</h1>
-        <p class="case-hero-subtitle">Quando a inteligência artificial ganha propósito</p>
-        <div class="case-hero-client">
+        <h1 class="case-hero-title anim-split-up">Tutu</h1>
+        <p class="case-hero-subtitle anim-fade-up" style="--delay: 0.5s">Quando a inteligência artificial ganha propósito</p>
+        <div class="case-hero-client anim-fade-up" style="--delay: 0.7s">
           <span class="case-hero-client-label">Cliente</span>
           <span class="case-hero-client-name">Valia Previdência</span>
         </div>
@@ -83,26 +86,29 @@
   <section class="case-section">
     <div class="container">
       <div class="case-grid case-grid--overview">
-        <div class="case-block">
+        <div class="case-block reveal-slide-right">
           <span class="case-label">Contexto</span>
           <h2 class="case-heading">Um tema complexo, uma marca cautelosa e uma tecnologia cheia de potencial</h2>
           <p class="case-text">A Valia enfrentava um desafio sensível: inovar na comunicação sem perder credibilidade. O uso de inteligência artificial surgia como oportunidade de escala e eficiência, mas também como um risco — havia um receio claro de que os conteúdos perdessem qualidade, autenticidade e conexão.</p>
           <p class="case-text">Ao mesmo tempo, o tema central da marca continuava sendo um obstáculo: previdência é complexa, distante e pouco envolvente no dia a dia das pessoas.</p>
         </div>
-        <div class="case-block">
+        <div class="case-block reveal-slide-left">
           <span class="case-label">Desafio</span>
-          <p class="case-text-large">Como usar inteligência artificial de forma estratégica, sem comprometer a percepção da marca e, ao mesmo tempo, tornar a comunicação mais próxima, simples e relevante para diferentes públicos?</p>
+          <p class="case-text-large">Como usar inteligência artificial de forma estratégica, sem comprometer a percepção da marca e, ao mesmo tempo, tornar a comunicação mais <mark>próxima, simples e relevante</mark> para diferentes públicos?</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ======== DIVIDER ======== -->
+  <div class="case-divider"><span></span></div>
 
   <!-- ======== INSIGHT ======== -->
   <section class="case-section case-section--accent">
     <div class="container">
       <div class="case-insight">
         <span class="case-label">Insight</span>
-        <blockquote class="case-quote">
+        <blockquote class="case-quote reveal-scale">
           O problema não era a inteligência artificial.<br>
           <strong>Era tentar fazê-la parecer humana.</strong>
         </blockquote>
@@ -115,13 +121,35 @@
   <section class="case-section">
     <div class="container">
       <div class="case-grid case-grid--idea">
-        <div class="case-block">
+        <div class="case-block reveal-slide-right">
           <span class="case-label">Ideia</span>
           <h2 class="case-heading">Criar o Tutu: um mascote assumidamente feito com IA</h2>
           <p class="case-text">Pensado não para substituir pessoas, mas para aproximar a marca das pessoas. Um personagem capaz de traduzir temas complexos com leveza, criando conexão emocional e consistência na comunicação.</p>
         </div>
-        <div class="case-mascot-showcase">
+        <div class="case-mascot-showcase reveal-slide-left">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC2uo-9POyze7usPRIab5v3Rt98n9JAcy75A&s" alt="Tutu — mascote da Valia" class="case-mascot-img" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== IMAGE GALLERY (placeholder for more images) ======== -->
+  <section class="case-section case-section--gallery">
+    <div class="container">
+      <span class="case-label">Galeria</span>
+      <h2 class="case-heading">O universo do Tutu</h2>
+      <div class="case-gallery">
+        <div class="case-gallery-item case-gallery-item--wide reveal-target">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC2uo-9POyze7usPRIab5v3Rt98n9JAcy75A&s" alt="Tutu em evento da Valia" loading="lazy">
+          <span class="case-gallery-caption">Tutu na sede da Valia</span>
+        </div>
+        <div class="case-gallery-item reveal-target">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC2uo-9POyze7usPRIab5v3Rt98n9JAcy75A&s" alt="Tutu digital" loading="lazy">
+          <span class="case-gallery-caption">Versão digital</span>
+        </div>
+        <div class="case-gallery-item reveal-target">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC2uo-9POyze7usPRIab5v3Rt98n9JAcy75A&s" alt="Tutu em evento" loading="lazy">
+          <span class="case-gallery-caption">Evento presencial</span>
         </div>
       </div>
     </div>
@@ -131,9 +159,10 @@
   <section class="case-section case-section--dark">
     <div class="container">
       <span class="case-label">Construção do personagem</span>
-      <h2 class="case-heading">Mais do que um mascote — um companheiro de jornada</h2>
+      <h2 class="case-heading">Mais do que um mascote — <mark>um companheiro de jornada</mark></h2>
       <div class="case-dna-grid">
         <div class="case-dna-card">
+          <div class="case-dna-number">01</div>
           <h3 class="case-dna-title">Personalidade</h3>
           <ul class="case-dna-list">
             <li>Acolhedor e empático</li>
@@ -144,6 +173,7 @@
           </ul>
         </div>
         <div class="case-dna-card">
+          <div class="case-dna-number">02</div>
           <h3 class="case-dna-title">Tom de voz</h3>
           <ul class="case-dna-list">
             <li>Próximo e acessível</li>
@@ -153,8 +183,33 @@
           </ul>
         </div>
         <div class="case-dna-card case-dna-card--highlight">
+          <div class="case-dna-number">03</div>
           <h3 class="case-dna-title">Propósito</h3>
           <p class="case-dna-text">Ser o elo entre o presente e o futuro, ajudando pessoas de diferentes gerações a entenderem o valor do planejamento de forma simples, leve e possível.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== HIGHLIGHT STAT BAND ======== -->
+  <section class="case-stat-band">
+    <div class="container">
+      <div class="case-stats">
+        <div class="case-stat">
+          <span class="case-stat-value" data-count="100">0</span><span class="case-stat-suffix">%</span>
+          <span class="case-stat-label">Aceitação interna</span>
+        </div>
+        <div class="case-stat">
+          <span class="case-stat-value" data-count="6">0</span><span class="case-stat-suffix">+</span>
+          <span class="case-stat-label">Canais de presença</span>
+        </div>
+        <div class="case-stat">
+          <span class="case-stat-value" data-count="52">0</span><span class="case-stat-suffix"></span>
+          <span class="case-stat-label">Episódios da websérie</span>
+        </div>
+        <div class="case-stat">
+          <span class="case-stat-value" data-count="1">0</span><span class="case-stat-suffix"></span>
+          <span class="case-stat-label">Mascote que virou ícone</span>
         </div>
       </div>
     </div>
@@ -197,6 +252,18 @@
           <p class="case-exec-desc">O personagem ultrapassou a tela e ganhou presença física em eventos, fortalecendo o vínculo com o público</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ======== PULL QUOTE ======== -->
+  <section class="case-section case-section--pullquote">
+    <div class="container">
+      <blockquote class="case-pullquote reveal-scale">
+        <span class="case-pullquote-mark">&ldquo;</span>
+        Tutu não esconde a tecnologia — ele a <strong>ressignifica.</strong>
+        <span class="case-pullquote-mark">&rdquo;</span>
+      </blockquote>
+      <p class="case-pullquote-sub">Ao assumir sua origem em IA, a Valia transforma uma possível barreira em ativo criativo.</p>
     </div>
   </section>
 
@@ -285,7 +352,7 @@
     <div class="container">
       <div class="case-takeaway">
         <span class="case-label">Aprendizado</span>
-        <blockquote class="case-takeaway-quote">
+        <blockquote class="case-takeaway-quote reveal-scale">
           Inovação não está na tecnologia em si — mas na forma como ela é usada.
         </blockquote>
         <p class="case-text">Quando há intenção, clareza e estratégia, até a inteligência artificial pode ser o caminho mais humano para se comunicar.</p>
@@ -334,7 +401,7 @@
     <div class="container">
       <div class="case-cta">
         <p class="case-cta-tag">Gostou do que viu?</p>
-        <h2 class="case-cta-title">Vamos criar o próximo case juntos.</h2>
+        <h2 class="case-cta-title">Vamos criar o próximo<br>case juntos.</h2>
         <div class="case-cta-buttons">
           <button type="button" class="btn-primary" data-open-contact>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -375,18 +442,66 @@
       localStorage.setItem('m2br-theme', next);
     });
 
-    // Nav scroll
+    // Nav scroll + progress bar
     const nav = document.getElementById('nav');
+    const progressBar = document.getElementById('caseProgress');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
+      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      progressBar.style.transform = `scaleX(${Math.min(scrolled, 1)})`;
     }, { passive: true });
 
-    // Scroll reveal
-    const faders = document.querySelectorAll('.case-block, .case-dna-card, .case-exec-item, .case-result, .case-reel-card, .case-related-card');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); observer.unobserve(e.target); }});
+    // Hero parallax
+    const heroBg = document.getElementById('heroBg');
+    const hero = document.getElementById('caseHero');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight * 1.2) {
+        heroBg.style.transform = `translateY(${window.scrollY * 0.35}px) scale(1.05)`;
+        hero.style.opacity = 1 - (window.scrollY / (window.innerHeight * 0.8));
+      }
+    }, { passive: true });
+
+    // Scroll reveal (fade-up default)
+    const revealElements = document.querySelectorAll('.case-block, .case-dna-card, .case-exec-item, .case-result, .case-reel-card, .case-related-card, .case-gallery-item, .reveal-target');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); }});
+    }, { threshold: 0.12 });
+    revealElements.forEach(el => { if (!el.classList.contains('reveal-slide-right') && !el.classList.contains('reveal-slide-left') && !el.classList.contains('reveal-scale')) el.classList.add('reveal-target'); revealObs.observe(el); });
+
+    // Directional reveals
+    const dirReveal = document.querySelectorAll('.reveal-slide-right, .reveal-slide-left, .reveal-scale');
+    const dirObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); dirObs.unobserve(e.target); }});
     }, { threshold: 0.15 });
-    faders.forEach(el => { el.classList.add('reveal-target'); observer.observe(el); });
+    dirReveal.forEach(el => dirObs.observe(el));
+
+    // Animated stat counters
+    const statValues = document.querySelectorAll('.case-stat-value[data-count]');
+    const statObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseInt(el.dataset.count);
+          const duration = 1800;
+          const start = performance.now();
+          const tick = (now) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(target * eased);
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          statObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    statValues.forEach(el => statObs.observe(el));
+
+    // Hero title split animation on load
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
   </script>
 
 </body>
