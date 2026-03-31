@@ -52,6 +52,23 @@
   gap: 12px;
 }
 
+/* Force white icons on case nav over dark hero */
+.nav--case .theme-toggle-icon,
+.nav--case .nav-case-breadcrumb,
+.nav--case .nav-case-breadcrumb a {
+  color: #fff;
+}
+
+.nav--case.scrolled .theme-toggle-icon,
+.nav--case.scrolled .nav-case-breadcrumb,
+.nav--case.scrolled .nav-case-breadcrumb a {
+  color: var(--text-primary);
+}
+
+.nav--case.scrolled .nav-case-breadcrumb a:hover {
+  color: var(--red);
+}
+
 /* --- Case Hero (Parallax-ready) --- */
 .case-hero {
   position: relative;
@@ -1020,6 +1037,18 @@
 
 [data-theme="light"] .case-dna-card {
   background: var(--bg-card);
+}
+
+[data-theme="light"] .case-dna-card--highlight {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+[data-theme="light"] .case-dna-card--highlight .case-dna-title,
+[data-theme="light"] .case-dna-card--highlight .case-dna-text,
+[data-theme="light"] .case-dna-card--highlight .case-dna-number {
+  color: #fff;
 }
 
 [data-theme="light"] .case-dna-number {
