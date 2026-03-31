@@ -355,7 +355,7 @@
 
 .case-mascot-showcase {
   position: relative;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
   background: var(--bg-card);
@@ -524,7 +524,7 @@
 
 .case-dna-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 40px var(--card-hover-shadow);
   border-color: rgba(227, 32, 44, 0.2);
 }
 
@@ -685,7 +685,7 @@
 .case-exec-item:hover {
   transform: translateY(-6px);
   border-color: var(--red);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px var(--card-hover-shadow);
 }
 
 .case-exec-icon {
@@ -738,13 +738,13 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   min-height: 580px;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.4s ease;
 }
 
 .case-reel-card:hover {
   transform: translateY(-4px);
   border-color: var(--red);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px var(--card-hover-shadow);
 }
 
 .case-reel-card iframe {
@@ -773,7 +773,7 @@
 .case-result:hover {
   transform: translateY(-6px);
   border-color: var(--red);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px var(--card-hover-shadow);
 }
 
 .case-result-icon {
@@ -848,14 +848,14 @@
   overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.4s ease;
   text-decoration: none;
 }
 
 .case-related-card:hover {
   transform: translateY(-6px);
   border-color: var(--red);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 40px var(--card-hover-shadow);
 }
 
 .case-related-img {
