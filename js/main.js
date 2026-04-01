@@ -10,19 +10,65 @@ if (savedTheme === 'light') {
   document.documentElement.setAttribute('data-theme', 'light');
 }
 
-themeToggle.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme');
-  const next = current === 'light' ? 'dark' : 'light';
-  if (next === 'dark') {
-    document.documentElement.removeAttribute('data-theme');
-  } else {
-    document.documentElement.setAttribute('data-theme', next);
-  }
-  localStorage.setItem('m2br-theme', next);
-});
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    if (next === 'dark') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', next);
+    }
+    localStorage.setItem('m2br-theme', next);
+  });
+}
 
 // --- Motion preference ---
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// --- Team names: always 2 lines (explicit <br>; must NOT pair with CSS -webkit-line-clamp) ---
+function initTeamNameTwoLines() {
+  const teamSection = document.getElementById('equipe');
+  if (!teamSection) return;
+
+  function bestSplit(words) {
+    let bestIndex = 1;
+    let bestDelta = Infinity;
+
+    for (let i = 1; i < words.length; i++) {
+      const first = words.slice(0, i).join(' ');
+      const second = words.slice(i).join(' ');
+      const delta = Math.abs(first.length - second.length);
+      if (delta < bestDelta) {
+        bestDelta = delta;
+        bestIndex = i;
+      }
+    }
+
+    return bestIndex;
+  }
+
+  teamSection.querySelectorAll('.team-name').forEach((nameEl) => {
+    if (nameEl.querySelector('br')) return;
+
+    const cleanName = nameEl.textContent.replace(/\s+/g, ' ').trim();
+    const words = cleanName.split(' ').filter(Boolean);
+    if (words.length < 2) return;
+
+    const splitIndex = bestSplit(words);
+    const line1 = words.slice(0, splitIndex).join(' ');
+    const line2 = words.slice(splitIndex).join(' ');
+
+    nameEl.innerHTML = `${line1}<br>${line2}`;
+    nameEl.setAttribute('aria-label', cleanName);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTeamNameTwoLines);
+} else {
+  initTeamNameTwoLines();
+}
 
 // --- Scroll throttle utility ---
 let ticking = false;

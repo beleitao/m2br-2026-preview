@@ -139,7 +139,7 @@
 [data-theme="light"] .card-quote { background: var(--red); color: var(--white); }
 [data-theme="light"] .team-quote { background: var(--red); }
 [data-theme="light"] .team-name { color: var(--text-primary); }
-[data-theme="light"] .team-label { background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, transparent 100%); }
+[data-theme="light"] .team-label { background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.45) 60%, transparent 100%); }
 [data-theme="light"] .team-bio .team-name { color: var(--text-primary); }
 [data-theme="light"] .card-has-bg .card-bg { opacity: 0; }
 [data-theme="light"] .card-has-bg:hover .card-bg { opacity: 0.15; }
@@ -1232,10 +1232,15 @@ h1, h2, h3, h4 {
   width: 100%;
   aspect-ratio: 3 / 4;
   background-size: cover;
-  background-position: center top;
+  background-position: center var(--team-photo-y, 12%);
   background-color: var(--bg-card);
   filter: grayscale(100%);
   transition: filter 0.5s ease;
+}
+
+/* Grid children need min-width:0 so 1fr columns stay equal (avoids “narrow first card”) */
+.team-grid > * {
+  min-width: 0;
 }
 
 .team-card:hover .team-photo {
@@ -1249,7 +1254,11 @@ h1, h2, h3, h4 {
   left: 0;
   right: 0;
   padding: 24px 24px 20px;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
   z-index: 2;
   transition: opacity 0.4s ease;
 }
@@ -1291,9 +1300,14 @@ h1, h2, h3, h4 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.01em;
+  /* Do NOT use -webkit-line-clamp here: names use explicit <br> from JS; clamp+br breaks layout in WebKit */
+  display: block;
+  line-height: 1.08;
+  min-height: calc(1.08em * 2);
   margin-bottom: 4px;
   color: var(--white);
 }
+
 
 .team-role {
   font-family: var(--font-body);
@@ -2250,6 +2264,10 @@ a.contact-channel:hover {
     font-size: 1.05rem;
   }
 
+  .team-label {
+    min-height: 80px;
+  }
+
   .clients-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -2537,6 +2555,7 @@ a.contact-channel:hover {
   }
 
   .team-label {
+    min-height: 70px;
     padding: 16px 14px 14px;
   }
 
